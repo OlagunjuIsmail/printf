@@ -27,10 +27,14 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = va_arg(ap, int);
-					n_char += print_char(&c);
+					n_char += print_char(c);
 					break;
 				case 's':
 					n_char += print_str(va_arg(ap, char *));
+					break;
+				case 'd':
+				case 'i':
+					n_char += print_int(va_arg(ap, int));
 					break;
 				case '%':
 					c = '%';
@@ -45,16 +49,4 @@ int _printf(const char *format, ...)
 	}
 
 	return (n_char);
-}
-
-/**
-  * len - finds the length of a string
-  * @s: the string
-  * Return: length of s
-  */
-int len(char *s)
-{
-	if (s == NULL || *s == 0)
-		return (0);
-	return (len(s + 1) + 1);
 }

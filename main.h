@@ -1,7 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
 int _printf(const char *format, ...);
-int len(char *s);
 int print_str(char *s);
-int print_char(char *c);
+int print_char(char c);
+int print_int(int num);
+int len(char *s);
+unsigned int len_int(int);
+void save_int(char *, int, unsigned int);
 #endif
