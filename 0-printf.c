@@ -2,7 +2,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-int len(char *s);
 /**
   * _printf - prints any number of args based on a format string
   * @format: the format string
@@ -11,7 +10,7 @@ int len(char *s);
 int _printf(const char *format, ...)
 {
 	int n_char;
-	char *str, c;
+	char c;
 	va_list ap;
 
 	n_char = 0;
@@ -28,11 +27,10 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = va_arg(ap, int);
-					n_char += write(1, &c, 1);
+					n_char += print_char(&c);
 					break;
 				case 's':
-					str = va_arg(ap, char *);
-					n_char += write(1, str, len(str));
+					n_char += print_str(va_arg(ap, char *));
 					break;
 				case '%':
 					c = '%';
