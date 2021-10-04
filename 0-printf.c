@@ -34,6 +34,10 @@ int _printf(const char *format, ...)
 					str = va_arg(ap, char *);
 					n_char += write(1, str, len(str));
 					break;
+				case '%':
+					c = '%';
+					n_char += write(1, &c, 1);
+					break;
 			}
 
 		}
