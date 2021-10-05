@@ -64,12 +64,12 @@ int print_base(unsigned int num, unsigned int base, int n_char)
 	if (num / base == 0)
 	{
 		d = num + '0';
-		return(write(1, &d, 1));
+		return (write(1, &d, 1));
 	}
 	n_char += print_base(num / base, base, 0);
 	d = (num % base) + '0';
 	write(1, &d, 1);
-	return(n_char + 1);
+	return (n_char + 1);
 }
 
 char hex(unsigned int num, char mod)

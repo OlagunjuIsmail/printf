@@ -17,7 +17,6 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	if (format == NULL)
 		return (n_char);
-
 	while (*format != 0)
 	{
 		if (*format == '%')
@@ -32,9 +31,7 @@ int _printf(const char *format, ...)
 				case 's':
 					n_char += print_str(va_arg(ap, char *));
 					break;
-				case 'd':
-				case 'i':
-				case 'u':
+				case 'd': case 'i': case 'u':
 					n_char += print_int(va_arg(ap, int));
 					break;
 				case 'b':
@@ -48,7 +45,6 @@ int _printf(const char *format, ...)
 					n_char += write(1, &c, 1);
 					break;
 			}
-
 		}
 		else
 			n_char += write(1, format, 1);
