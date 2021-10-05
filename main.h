@@ -4,7 +4,7 @@ int _printf(const char *format, ...);
 int print_str(char *s);
 int print_char(char c);
 int print_int(int num);
-int print_bin(unsigned int, int);
+int print_base(unsigned int, unsigned int, int);
 int len(char *s);
 unsigned int len_int(int);
 void save_int(char *, int, unsigned int);

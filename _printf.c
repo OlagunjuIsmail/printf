@@ -34,10 +34,14 @@ int _printf(const char *format, ...)
 					break;
 				case 'd':
 				case 'i':
+				case 'u':
 					n_char += print_int(va_arg(ap, int));
 					break;
 				case 'b':
-					n_char += print_bin(va_arg(ap, unsigned int), 0);
+					n_char += print_base(va_arg(ap, unsigned int), 2, 0);
+					break;
+				case 'o':
+					n_char += print_base(va_arg(ap, unsigned int), 8, 0);
 					break;
 				case '%':
 					c = '%';
