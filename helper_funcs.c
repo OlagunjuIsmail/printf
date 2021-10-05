@@ -52,3 +52,29 @@ unsigned int len_int(int num)
 
 	return (len_int(num / 10) + 1);
 }
+
+/**
+  * hex - returns the appropriate letter for hexadecimal conversion
+  * @num: number to convert to letter (10 to 15)
+  * @flag: specify whether to return upper or lowercase letters
+  * Return: a char equivalent of num
+  */
+char hex(unsigned int num, char flag)
+{
+	int i;
+	char c;
+	char cs[12] = {'A', 'B', 'C', 'D', 'E', 'F', 'a', 'b', 'c', 'd', 'e', 'f'};
+	unsigned int nums[6] = {10, 11, 12, 13, 14, 15};
+
+	for (i = 0; i < 6; i++)
+	{
+		if (num == nums[i])
+		{
+			if (flag == 'X')
+				c = cs[i];
+			else
+				c = cs[i + 6];
+		}
+	}
+	return (c);
+}

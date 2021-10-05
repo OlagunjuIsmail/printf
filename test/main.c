@@ -12,5 +12,6 @@ int main(void)
 	len3 = _printf("98(2): %b, 98(8): %o\n", 98, 98);
 	_printf("len1: %i, len2: %d, len3: %d\n", len1, len2, len3);
 	printf("Len: %u %u %x\n", len_int(60), 54, 15);
+	_printf("%x, %X\n", 2777, 2777);
 	return (0);
 }

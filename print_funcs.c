@@ -54,36 +54,30 @@ int print_int(int num)
   * print_base - prints a decimal in the base specified
   * @num: the integer passed
   * @base: the base to be converted to
-  * @n_char: number of chars printed
+  * @f: a flag to specify upper or lower case letter in base 16 (x or X)
+  * @n_char: 0 to be incremented
   * Return: number of digits printed
   */
-int print_base(unsigned int num, unsigned int base, int n_char)
+int print_base(unsigned int num, unsigned int base, char f, int n_char)
 {
 	char d;
 
 	if (num / base == 0)
 	{
-		d = num + '0';
+		if (base == 16 && num > 9)
+			d = hex(num, f);
+		else
+			d = num + '0';
 		return (write(1, &d, 1));
 	}
-	n_char += print_base(num / base, base, 0);
-	d = (num % base) + '0';
+
+	n_char += print_base(num / base, base, f, 0);
+
+	if (base == 16 && num % base > 9)
+		d = hex(num % base, f);
+	else
+		d = (num % base) + '0';
+
 	write(1, &d, 1);
 	return (n_char + 1);
-}
-
-char hex(unsigned int num, char mod)
-{
-	char upper[6] = {'A', 'B', 'C', 'D', 'E', 'F'};
-	char lower[6] = {'a', 'b', 'c', 'd', 'e', 'f'};
-	int nums[6] = {10, 11, 12, 13, 14, 15};
-
-	for (i = 0; i < 6; i++)
-	{
-		if (num == nums[i])
-			if (mod = 'x')
-				return (lower[i]);
-			else 
-				return (upper[i]);
-	}
 }
