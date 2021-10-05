@@ -51,21 +51,23 @@ int print_int(int num)
 }
 
 /**
-  * print_bin - prints the binary equivalent of a decimal
+  * print_base - prints the binary equivalent of a decimal
   * @num: the integer passed
+  * @base: the base to be converted to
+  * @n_char: number of chars printed
   * Return: number of digits printed
   */
-int print_bin(unsigned int num, int n_char)
+int print_base(unsigned int num, unsigned int base, int n_char)
 {
 	char d;
 
-	if (num / 2 == 0)
+	if (num / base == 0)
 	{
-		d = '1';
-		return(write(1, &d, 1));
+		d = num + '0';
+		return (write(1, &d, 1));
 	}
-	n_char += print_bin(num / 2, 0);
-	d = (num % 2) + '0';
+	n_char += print_base(num / base, base, 0);
+	d = (num % base) + '0';
 	write(1, &d, 1);
-	return(n_char + 1);
+	return (n_char + 1);
 }

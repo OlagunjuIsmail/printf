@@ -17,7 +17,6 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	if (format == NULL)
 		return (n_char);
-
 	while (*format != 0)
 	{
 		if (*format == '%')
@@ -32,12 +31,14 @@ int _printf(const char *format, ...)
 				case 's':
 					n_char += print_str(va_arg(ap, char *));
 					break;
-				case 'd':
-				case 'i':
+				case 'd': case 'i': case 'u':
 					n_char += print_int(va_arg(ap, int));
 					break;
 				case 'b':
-					n_char += print_bin(va_arg(ap, unsigned int), 0);
+					n_char += print_base(va_arg(ap, unsigned int), 2, 0);
+					break;
+				case 'o':
+					n_char += print_base(va_arg(ap, unsigned int), 8, 0);
 					break;
 				case '%':
 					c = '%';
