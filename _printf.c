@@ -36,6 +36,9 @@ int _printf(const char *format, ...)
 				case 'i':
 					n_char += print_int(va_arg(ap, int));
 					break;
+				case 'b':
+					n_char += print_bin(va_arg(ap, unsigned int), 0);
+					break;
 				case '%':
 					c = '%';
 					n_char += write(1, &c, 1);

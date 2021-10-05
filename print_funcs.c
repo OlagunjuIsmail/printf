@@ -28,7 +28,7 @@ int print_str(char *s)
 /**
   * print_int - writes an integer to stdout
   * @num: the integer
-  * Return: number of char written
+  * Return: number of digits written
   */
 int print_int(int num)
 {
@@ -48,4 +48,24 @@ int print_int(int num)
 	n_char = write(1, s, len_s);
 	free(s);
 	return (n_char);
+}
+
+/**
+  * print_bin - prints the binary equivalent of a decimal
+  * @num: the integer passed
+  * Return: number of digits printed
+  */
+int print_bin(unsigned int num, int n_char)
+{
+	char d;
+
+	if (num / 2 == 0)
+	{
+		d = '1';
+		return(write(1, &d, 1));
+	}
+	n_char += print_bin(num / 2, 0);
+	d = (num % 2) + '0';
+	write(1, &d, 1);
+	return(n_char + 1);
 }
