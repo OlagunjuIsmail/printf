@@ -34,14 +34,14 @@ Formats covered include:
 .B _printf(\[lq]I am %d years old\[rq], 15)
 prints \f[B]I am 15 years old\f[R]
 .TP
-.B _printf(\[lq]My name is %s\[rq], \[lq]Nasir\[rq])
-prints \f[B]My name is Nasir\f[R]
+.B _printf(\[lq]My name is %s\[rq], \[lq]Ismail\[rq])
+prints \f[B]My name is Ismail\f[R]
 .SH EXIT VALUES
 .PP
 Returns the number of characters printed
 .SH COPYRIGHT
 .PP
-Copyright (c) 2021 Abdulrasheed Nasir.
+Copyright (c) 2021 Olagunju Ismail.
 Written as part of the ALX Software Engineering training program.
 .SH AUTHORS
-Nasir Abdulrasheed.
+Olagunju Ismail.
