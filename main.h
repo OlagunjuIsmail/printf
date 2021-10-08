@@ -1,12 +1,14 @@
 #ifndef MAIN_H
 #define MAIN_H
 int _printf(const char *format, ...);
-int print_str(char *s);
-int print_char(char c);
-int print_int(int num);
-int print_base(unsigned int, unsigned int, char, int);
-char hex(unsigned int num, char flag);
+char *print_str(char *s, char *);
+char *print_char(char c, char *);
+char *print_int(int num, char *);
+char *print_uint(int, char *);
+int print_base(unsigned int, unsigned int, char, char *, unsigned int);
+char hex(unsigned num, char flag);
 int len(char *s);
-unsigned int len_int(int);
-void save_int(char *, int, unsigned int);
+unsigned int len_int(unsigned int);
+char *save_int(char *, int, unsigned int);
+char *save_uint(char *, unsigned int, unsigned int);
 #endif

@@ -16,28 +16,50 @@ int len(char *s)
 
 /**
   * save_int - saves an integer to a given buffer
-  * @buf: the buffer
+  * @buff: the buffer
   * @num: number to be saved
-  * @len_buf: size of buf in bytes
+  * @len_buff: size of buf in bytes
   * Return: nothing
   */
-void save_int(char *buf, int num, unsigned int len_buf)
+char *save_int(char *buff, int num, unsigned int len_buff)
 {
 	unsigned int i;
 
 	if (num < 0)
 	{
-		*buf = '-';
+		*buff = '-';
 		num *= -1;
-		buf++;
-		len_buf--;
+		buff++;
+		len_buff--;
 	}
 
-	for (i = 0; i < len_buf; i++)
+	for (i = 0; i < len_buff; i++)
 	{
-		*(buf + len_buf - i - 1) = (num % 10) + '0';
+		*(buff + len_buff - i - 1) = (num % 10) + '0';
 		num = num / 10;
 	}
+
+	return (buff + len_buff - 1);
+}
+
+/**
+  * save_uint - saves an unsigned integer to a given buffer
+  * @buff: the buffer
+  * @num: number to be saved
+  * @len_buff: size of buf in bytes
+  * Return: nothing
+  */
+char *save_uint(char *buff, unsigned int num, unsigned int len_buff)
+{
+	unsigned int i;
+
+	for (i = 0; i < len_buff; i++)
+	{
+		*(buff + len_buff - i - 1) = (num % 10) + '0';
+		num = num / 10;
+	}
+
+	return (buff + len_buff - 1);
 }
 
 /**
@@ -45,7 +67,7 @@ void save_int(char *buf, int num, unsigned int len_buf)
   * @num: the integer
   * Return: length of num
   */
-unsigned int len_int(int num)
+unsigned int len_int(unsigned int num)
 {
 	if (num / 10 == 0)
 		return (1);

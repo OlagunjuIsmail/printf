@@ -2,63 +2,85 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <string.h>
+#include <limits.h>
 
 /**
-  * print_char - writes a char to stdout
+  * print_char - copies a char to a buffer
   * @c: the char
+  * @buff: the buffer
   * Return: number of char printed = 1
   */
-int print_char(char c)
+char *print_char(char c, char *buff)
 {
-	return (write(1, &c, 1));
+	return (memcpy(buff, &c, 1));
 }
 
 /**
-  * print_str - writes a string to stdout
+  * print_str - copies a string to a buffer
   * @s: the string
+  * @buff: the buffer
   * Return: the number of chars written
   */
-int print_str(char *s)
+char *print_str(char *s, char *buff)
 {
 	if (s == NULL || *s == 0)
 		return (0);
-	return (write(1, s, len(s)));
+	memcpy(buff, s, len(s));
+	return (buff + len(s) - 1);
 }
 
 /**
-  * print_int - writes an integer to stdout
+  * print_int - copies an integer to a buffer
   * @num: the integer
+  * @buff: the buffer
   * Return: number of digits written
   */
-int print_int(int num)
+char *print_int(int num, char *buff)
 {
-	char *s;
 	unsigned int len_s;
-	int n_char;
 
 	if (num < 0)
 		len_s = len_int(num * -1) + 1;
 	else
 		len_s = len_int(num);
 
-	s = malloc(sizeof(char) * len_s);
-	if (s != NULL)
-		save_int(s, num, len_s);
-
-	n_char = write(1, s, len_s);
-	free(s);
-	return (n_char);
+	return (save_int(buff, num, len_s));
 }
 
 /**
-  * print_base - prints a decimal in the base specified
+  * print_uint - prints unsigned ints to a buffer
+  * @num: the number
+  * @buff: the buffer for saving
+  * Return: pointer to the start of the strings
+  */
+char *print_uint(int num, char *buff)
+{
+	unsigned int len_s, u_num;
+
+	if (num < 0)
+	{
+		u_num = UINT_MAX + 1 + num;
+		len_s = len_int(u_num);
+		return (save_uint(buff, u_num, len_s));
+	}
+	else
+		len_s = len_int(num);
+
+	return (save_int(buff, num, len_s));
+}
+
+/**
+  * print_base - converts a decimal to a base and save in a buffer
   * @num: the integer passed
   * @base: the base to be converted to
   * @f: a flag to specify upper or lower case letter in base 16 (x or X)
-  * @n_char: 0 to be incremented
+  * @buff: the buffer
+  * @pos: current position in the result
   * Return: number of digits printed
   */
-int print_base(unsigned int num, unsigned int base, char f, int n_char)
+int print_base(unsigned int num, unsigned int base, char f,
+		char *buff, unsigned int pos)
 {
 	char d;
 
@@ -68,16 +90,17 @@ int print_base(unsigned int num, unsigned int base, char f, int n_char)
 			d = hex(num, f);
 		else
 			d = num + '0';
-		return (write(1, &d, 1));
+		(memcpy(buff, &d, 1));
+		return (1);
 	}
 
-	n_char += print_base(num / base, base, f, 0);
+	pos += print_base(num / base, base, f, buff, pos);
 
 	if (base == 16 && num % base > 9)
 		d = hex(num % base, f);
 	else
 		d = (num % base) + '0';
+	memcpy(buff + pos, &d, 1);
 
-	write(1, &d, 1);
-	return (n_char + 1);
+	return (pos + 1);
 }
