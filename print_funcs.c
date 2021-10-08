@@ -31,6 +31,38 @@ char *print_str(char *s, char *buff)
 }
 
 /**
+  * print_strcap - prints a string, with non-printables as \x+hex value
+  * @s: string
+  * @buff: buffer save to
+  * Return: pointer to buffer
+  */
+char *print_strcap(char *s, char *buff)
+{
+	int i;
+
+	if (s == NULL || *s == 0)
+		return (0);
+	for (i = 0; i < len(s); i++)
+	{
+		if (*(s + i) > 0 && (*(s + i) < 32 || *(s + i) >= 127))
+		{
+			memcpy(buff, "\\x", 2);
+			if (*(s + i) >= 1 && *(s + i) <= 15)
+			{
+				memcpy(buff + 2, "0", 1);
+				buff++;
+			}
+			buff += print_base(*(s + i), 16, 'X', (buff + 2), 0) + 1;
+		}
+		else
+			memcpy(buff, s + i, 1);
+		buff++;
+	}
+
+	return (buff);
+}
+
+/**
   * print_int - copies an integer to a buffer
   * @num: the integer
   * @buff: the buffer

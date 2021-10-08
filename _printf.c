@@ -38,6 +38,9 @@ int _printf(const char *format, ...)
 					case 's':
 						buffer_h = print_str(va_arg(ap, char *), buffer_h);
 						break;
+					case 'S':
+						buffer_h = print_strcap(va_arg(ap, char *), buffer_h) - 1;
+						break;
 					case 'd': case 'i':
 						buffer_h = print_int(va_arg(ap, int), buffer_h);
 						break;
