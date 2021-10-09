@@ -66,6 +66,9 @@ int _printf(const char *format, ...)
 					case '%':
 						buffer_h = memcpy(buffer_h, "%", 1);
 						break;
+					case 'p':
+						buffer_h = print_p(va_arg(ap, size_t), buffer_h);
+						break;
 				}
 			}
 			else

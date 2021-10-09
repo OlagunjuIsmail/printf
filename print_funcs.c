@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include <string.h>
 #include <limits.h>
+#include <stdio.h>
+#include <stdint.h>
 
 /**
   * print_char - copies a char to a buffer
@@ -111,7 +113,7 @@ char *print_uint(int num, char *buff)
   * @pos: current position in the result
   * Return: number of digits printed
   */
-int print_base(unsigned int num, unsigned int base, char f,
+int print_base(long unsigned int num, unsigned int base, char f,
 		char *buff, unsigned int pos)
 {
 	char d;
@@ -135,4 +137,17 @@ int print_base(unsigned int num, unsigned int base, char f,
 	memcpy(buff + pos, &d, 1);
 
 	return (pos + 1);
+}
+
+/**
+  * print_p - prints a pointer to buff
+  * @p: the pointer
+  * @buff: the buffer
+  * Return: pointer to buffer
+  */
+char *print_p(size_t p, char *buff)
+{
+	memcpy(buff, "0x", 2);
+	buff += print_base((intptr_t)p, 16, 'x', buff + 2, 0) + 1;
+	return (buff);
 }
