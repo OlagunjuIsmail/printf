@@ -20,6 +20,7 @@ int _printf(const char *format, ...)
 	buffer = malloc(sizeof(char) * 1024);
 
 	if (format == NULL)
+		free(buffer);
 		return (n_char);
 
 	if (buffer != NULL)
@@ -69,6 +70,9 @@ int _printf(const char *format, ...)
 					case 'p':
 						buffer_h = print_p(va_arg(ap, size_t), buffer_h);
 						break;
+					default:
+						buffer_h = memcpy(buffer_h, "%", 1);
+						format--;
 				}
 			}
 			else
