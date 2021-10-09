@@ -25,11 +25,13 @@ char *print_char(char c, char *buff)
   */
 char *print_str(char *s, char *buff)
 {
-	if (s == NULL || *s == 0)
+	if (s == NULL)
 	{
 		memcpy(buff, "(null)", 6);
 		return (buff + 5);
 	}
+	if (*s == 0)
+		return (buff);
 	memcpy(buff, s, len(s));
 	return (buff + len(s) - 1);
 }
@@ -45,7 +47,7 @@ char *print_strcap(char *s, char *buff)
 	int i;
 
 	if (s == NULL || *s == 0)
-		return (0);
+		return (buff + 1);
 	for (i = 0; i < len(s); i++)
 	{
 		if (*(s + i) > 0 && (*(s + i) < 32 || *(s + i) >= 127))
@@ -115,7 +117,7 @@ char *print_uint(int num, char *buff)
   * @pos: current position in the result
   * Return: number of digits printed
   */
-int print_base(long unsigned int num, unsigned int base, char f,
+int print_base(unsigned long int num, unsigned int base, char f,
 		char *buff, unsigned int pos)
 {
 	char d;
