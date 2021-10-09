@@ -147,7 +147,12 @@ int print_base(long unsigned int num, unsigned int base, char f,
   */
 char *print_p(size_t p, char *buff)
 {
+	if (!p)
+	{
+		memcpy(buff, "(nil)", 5);
+		return (buff + 4);
+	}
 	memcpy(buff, "0x", 2);
-	buff += print_base((intptr_t)p, 16, 'x', buff + 2, 0) + 1;
+	buff += print_base(p, 16, 'x', (buff + 2), 0) + 1;
 	return (buff);
 }
