@@ -44,4 +44,8 @@ Returns the number of characters printed
 Copyright (c) 2021 Olagunju Ismail.
 Written as part of the ALX Software Engineering training program.
 .SH AUTHORS
+<<<<<<< HEAD
 Ismail Olagunju.
+=======
+Olagunju Ismail.
+>>>>>>> 96734bd98893eeb5448c0725be5dfb0148b2fb69
