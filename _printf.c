@@ -20,9 +20,10 @@ int _printf(const char *format, ...)
 	buffer = malloc(sizeof(char) * 1024);
 
 	if (format == NULL)
+	{
 		free(buffer);
 		return (n_char);
-
+	}
 	if (buffer != NULL)
 	{
 		buffer_h = buffer;
