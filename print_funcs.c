@@ -4,7 +4,6 @@
 #include <stddef.h>
 #include <string.h>
 #include <limits.h>
-#include <stdio.h>
 #include <stdint.h>
 
 /**
@@ -27,7 +26,10 @@ char *print_char(char c, char *buff)
 char *print_str(char *s, char *buff)
 {
 	if (s == NULL || *s == 0)
-		return (0);
+	{
+		memcpy(buff, "(null)", 6);
+		return (buff + 5);
+	}
 	memcpy(buff, s, len(s));
 	return (buff + len(s) - 1);
 }
